@@ -1,9 +1,10 @@
 import React from 'react'
 
-export const Button = ({ phase }) => {
+export const Button = ({ phase, f }) => {
     return (
         <input type="button"
-               value={phase} // should either be: "Click to Run", "Stop", "Reset" 
+               onclick={f}
+               value={phase} // should either be: "Click to Start", "Stop", "Reset" 
          />
     )
 }

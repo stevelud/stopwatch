@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Timer = () => {
+export const Timer = ({ time: Number }) => {
     return (
         <div>
             {}
