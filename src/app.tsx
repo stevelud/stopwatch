@@ -1,19 +1,21 @@
-import { Button } from './button'
-import { Timer } from './timer'
 import React from 'react'
-import { setState } from 'react'
+import { Button } from './Button'
+import { Timer } from './Timer'
+import { useState } from 'react'
 
-export const App = () => {
+
+export const App: React.FC = () => {
 
     const Phases = ["Click to Start", "Stop", "Reset"]
-    let n = 0;
+    let n: number = 0;
+    let intervalID = null;
 
-    const [phase, setPhase] = setState(Phases[n])
-    const [time, setTime] = setState(0)
+    const [phase, setPhase] = useState(Phases[n])
+    const [time, setTime] = useState(0)
 
     const incrementPhase = () => {
         // There are three phases that go through a cycle
-        setState(Phases[n++ % 3])
+        setPhase(Phases[n++ % 3])
     }
 
     const incrementTimer = () => {
@@ -25,15 +27,16 @@ export const App = () => {
         if (phase === Phases[0]) return startTimer
         if (phase === Phases[1]) return stopTimer
         if (phase === Phases[2]) return resetTimer
+        else return null
     }
 
     const startTimer = () => {
-        setInterval(incrementTimer, 100)
+        intervalID = setInterval(incrementTimer, 100)
         incrementPhase()
     }
 
     const stopTimer = () => {
-        clearInterval()
+        clearInterval(intervalID)
         incrementPhase()
     }
 
@@ -43,9 +46,9 @@ export const App = () => {
     }
 
     return (
-        <>
+        <div>
             <Timer time={time} />
             <Button phase={phase} f={setButtonFunction()} />
-        </>
+        </div>
     )
 }

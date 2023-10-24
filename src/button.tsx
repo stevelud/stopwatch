@@ -1,10 +1,15 @@
 import React from 'react'
 
-export const Button = ({ phase, f }) => {
+interface ButtonProps {
+    phase: string,
+    f: any
+}
+
+export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     return (
         <input type="button"
-               onclick={f}
-               value={phase} // should either be: "Click to Start", "Stop", "Reset" 
+               onClick={props.f}
+               value={props.phase} // should either be: "Click to Start", "Stop", "Reset" 
          />
     )
 }

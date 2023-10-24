@@ -1,9 +1,13 @@
 import React from 'react'
 
-export const Timer = ({ time: Number }) => {
+interface TimerProps {
+    time: Number
+}
+
+export const Timer: React.FC<TimerProps> = (props: TimerProps) => {
     return (
         <div>
-            {}
+            {props.time.toFixed(1)}
         </div>
     )
 }
