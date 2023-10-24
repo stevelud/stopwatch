@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default Button = ({ phase }) => {
+export const Button = ({ phase }) => {
     return (
         <input type="button"
-               value={phase} // should either be: Click to Start, Click to Stop, Click to Restart 
+               value={phase} // should either be: "Click to Run", "Stop", "Reset" 
          />
     )
 }
