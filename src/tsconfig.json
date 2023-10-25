@@ -3,5 +3,6 @@
       "jsx": "react",
       "outDir": "/dist",
       "esModuleInterop": true,
+      "module": "esnext",
     }
   }

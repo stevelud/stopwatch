@@ -4,7 +4,7 @@ import { Timer } from './Timer'
 import { useState } from 'react'
 
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
 
     const Phases = ["Click to Start", "Stop", "Reset"]
     let n: number = 0;
@@ -52,3 +52,5 @@ export const App: React.FC = () => {
         </div>
     )
 }
+
+export default App;
