@@ -9,9 +9,11 @@ var port = process.env.PORT || 8080;
 
 const app = express()
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
-})
+app.use(express.static("public"))
+
+//app.get('/', (req, res) => {
+//    res.sendFile(path.join(__dirname, "index.html"));
+//})
 
 app.listen(port, () => {
     console.log('Listening on port ' + port + '.');
