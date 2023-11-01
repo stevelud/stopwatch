@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface ButtonProps {
-    phase: string,
+    phase: string | number,
     f: any
 }
 

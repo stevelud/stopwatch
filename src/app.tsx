@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from './Button'
 import { Timer } from './Timer'
 import { useState } from 'react'
@@ -7,48 +7,36 @@ import { useState } from 'react'
 const App: React.FC = () => {
 
     const Phases = ["Click to Start", "Stop", "Reset"]
-    let n: number = 0;
-    let intervalID = null;
 
-    const [phase, setPhase] = useState(Phases[n])
+    const [phase, setPhase] = useState(0)
     const [time, setTime] = useState(0)
-
-    const incrementPhase = () => {
-        // There are three phases that go through a cycle
-        setPhase(Phases[n++ % 3])
-    }
-
-    const incrementTimer = () => {
-        // Updating state just by intervals of 1 tenth of a second
-        setTime(time + 0.1)
-    }
-
-    const setButtonFunction = () => {
-        if (phase === Phases[0]) return startTimer
-        if (phase === Phases[1]) return stopTimer
-        if (phase === Phases[2]) return resetTimer
-        else return null
-    }
-
+    const [intervalID, setIntervalID] = useState(null)
+    
     const startTimer = () => {
-        intervalID = setInterval(incrementTimer, 100)
-        incrementPhase()
+        setIntervalID(
+            setInterval(() => setTime(t => t + 0.1), 100))
     }
 
-    const stopTimer = () => {
-        clearInterval(intervalID)
-        incrementPhase()
-    }
+    useEffect(() => {
 
-    const resetTimer = () => {
-        setTime(0)
-        incrementPhase()
+        if (phase == 0) {
+            setTime(0)
+        } else if (phase == 1) {
+            startTimer()
+        } else if (phase == 2) {
+            return clearInterval(intervalID)
+        }
+    }, [phase])
+    
+    const incrementPhase = () => {
+        // mod 3 because there are three phases
+        setPhase(phase => (phase + 1) % 3)
     }
 
     return (
         <div>
             <Timer time={time} />
-            <Button phase={phase} f={setButtonFunction()} />
+            <Button phase={Phases[phase]} f={incrementPhase} />
         </div>
     )
 }
