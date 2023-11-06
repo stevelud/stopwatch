@@ -2,23 +2,21 @@ import React, { useEffect } from 'react'
 import { Button } from './Button'
 import { Timer } from './Timer'
 import { useState } from 'react'
-
+import './App.css'
 
 const App: React.FC = () => {
-
-    const Phases = ["Click to Start", "Stop", "Reset"]
 
     const [phase, setPhase] = useState(0)
     const [time, setTime] = useState(0)
     const [intervalID, setIntervalID] = useState(null)
     
     const startTimer = () => {
-        setIntervalID(
-            setInterval(() => setTime(t => t + 0.1), 100))
+        setIntervalID(setInterval(() => setTime(t => t + 0.1), 100))
     }
 
-    useEffect(() => {
+    const Phases = ["Click to Start", "Stop", "Reset"]
 
+    useEffect(() => {
         if (phase == 0) {
             setTime(0)
         } else if (phase == 1) {
@@ -34,7 +32,7 @@ const App: React.FC = () => {
     }
 
     return (
-        <div>
+        <div className="App" >
             <Timer time={time} />
             <Button phase={Phases[phase]} f={incrementPhase} />
         </div>
