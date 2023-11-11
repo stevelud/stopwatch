@@ -1,3 +1,17 @@
 .App {
    border: 1px solid black;
+   padding:10px;
+   min-width:10%;
+   max-width:12%;
+   margin:auto; 
+}
+
+input {
+    min-width:10rem;
+    margin:auto;
+}
+
+.TimerStyle {
+    min-width:10rem;
+    text-align:center;
 }

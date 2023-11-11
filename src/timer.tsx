@@ -6,7 +6,7 @@ interface TimerProps {
 
 export const Timer: React.FC<TimerProps> = (props: TimerProps) => {
     return (
-        <div>
+        <div className="TimerStyle">
             {props.time.toFixed(1)}
         </div>
     )
