@@ -8,6 +8,7 @@ interface ButtonProps {
 export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     return (
         <input type="button"
+               className="ButtonStyle"
                onClick={props.f}
                value={props.phase} // should either be: "Click to Start", "Stop", "Reset" 
          />
