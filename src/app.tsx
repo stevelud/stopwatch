@@ -16,15 +16,13 @@ const App: React.FC = () => {
 
     const Phases = ["Click to Start", "Stop", "Reset"]
 
-    useEffect(() => {
-        if (phase == 0) {
-            setTime(0)
-        } else if (phase == 1) {
-            startTimer()
-        } else if (phase == 2) {
-            return clearInterval(intervalID)
-        }
-    }, [phase])
+    const PhaseFunctions = {
+        '0': startTimer(),
+
+        '1': clearInterval(intervalID),
+
+        '2': setTime(0)
+    };
     
     const incrementPhase = () => {
         // mod 3 because there are three phases
@@ -34,7 +32,7 @@ const App: React.FC = () => {
     return (
         <div className="App" >
             <Timer time={time} />
-            <Button phase={Phases[phase]} f={incrementPhase} />
+            <Button phase={Phases[phase]} f={PhaseFunctions[phase]} />
         </div>
     )
 }
