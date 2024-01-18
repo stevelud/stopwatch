@@ -10,9 +10,12 @@ const App: React.FC = () => {
     const [time, setTime] = useState(0)
     const [intervalID, setIntervalID] = useState(null)
     
+    //let intervalid;
+
     const startTimer = () => {
         incrementPhase()
         setIntervalID(setInterval(() => setTime(t => t + 0.1), 100))
+        //intervalid = setInterval(() => setTime(t => t + 0.1), 100);
     }
 
     const stopTimer = () => {
@@ -25,15 +28,16 @@ const App: React.FC = () => {
         setTime(0)
     }
 
-    const Phases = ["Click to Start", "Stop", "Reset"]
-
     const PhaseFunctions = {
         '0': startTimer,
-
         '1': stopTimer,
-
         '2': reset
     };
+
+    const Phases = [ { fn: startTimer, phrase: "Click to Start" }, 
+                     { fn: stopTimer, phrase: "Stop" }, 
+                     { fn: reset, phrase: "Reset"} 
+                    ]
     
     const incrementPhase = () => {
         // mod 3 because there are three phases
@@ -43,7 +47,7 @@ const App: React.FC = () => {
     return (
         <div className="App" >
             <Timer time={time} />
-            <Button phase={Phases[phase]} f={PhaseFunctions[phase]} />
+            <Button f={Phases[phase].fn} phase={Phases[phase].phrase} />
         </div>
     )
 }
